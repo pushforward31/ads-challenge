@@ -8,7 +8,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
- 
+  <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -44,59 +44,59 @@
   
   var fileChooser = document.getElementById('fileChooser');
   
-//   function parseTextAsXml1(text) {
-//     var parser = new DOMParser(),
-//       xmlDom = parser.parseFromString(text, "text/xml");
+  function parseTextAsXml1(text) {
+    var parser = new DOMParser(),
+      xmlDom = parser.parseFromString(text, "text/xml");
 
-//     //now, extract items from xmlDom and assign to appropriate text input fields
+    //now, extract items from xmlDom and assign to appropriate text input fields
    
-//       var x, i, xmlDoc, table;
-//       // xmlDoc = text.responseXML;
-//       console.log("xmlDoc " + xmlDom);
-//       table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
-//       x = xmlDom.getElementsByTagName("Contact")
-//       for (i = 0; i < x.length; i++) {
-//         table += "<tr><td>" +
-//           x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
-//           "</td><td>" +
-//           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
-//           "</td><td>" +
-//           x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
-//           "</td><td>" +
-//           x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
-//           "</td><td>" +
-//           x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
-//           "</td><td>" + 
-//           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
-//           "</td></tr>";
-//       }
-//       document.getElementById("demo1").innerHTML = table;
+      var x, i, xmlDoc, table;
+      // xmlDoc = text.responseXML;
+      console.log("xmlDoc " + xmlDom);
+      table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
+      x = xmlDom.getElementsByTagName("Contact")
+      for (i = 0; i < x.length; i++) {
+        table += "<tr><td>" +
+          x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
+          "</td><td>" + 
+          x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
+          "</td></tr>";
+      }
+      document.getElementById("demo1").innerHTML = table;
     
     
-//   }
+  }
 
-//   function waitForTextReadComplete1(reader) {
-//     reader.onloadend = function (event) {
-//       var text = event.target.result;
+  function waitForTextReadComplete1(reader) {
+    reader.onloadend = function (event) {
+      var text = event.target.result;
 
-//       parseTextAsXml1(text);
-//       // console.log(text);
-//     }
+      parseTextAsXml1(text);
+      // console.log(text);
+    }
  
-// }
+}
 
-//   function handleFileSelection1() {
-//     $("#table").click(function(){
-//     var file = fileChooser.files[0],
-//       reader = new FileReader();
+  function handleFileSelection1() {
+    $("#table").click(function(){
+    var file = fileChooser.files[0],
+      reader = new FileReader();
 
-//     waitForTextReadComplete1(reader);
-//     reader.readAsText(file);
-//     console.log(reader + file);
-//   });
-//   }
+    waitForTextReadComplete1(reader);
+    reader.readAsText(file);
+    console.log(reader + file);
+  });
+  }
 
-//   fileChooser.addEventListener('change', handleFileSelection1, false);
+  fileChooser.addEventListener('change', handleFileSelection1, false);
 
 
 
@@ -116,16 +116,16 @@
       card = "<div></div>";
       x = xmlDom.getElementsByTagName("Contact")
       for (i = 0; i < x.length; i++) {
-        card += "<div class = 'group'>" +
-          x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
+        card += "<div class = 'group'>"  +
+          x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue + "\n" +
           
-          x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
-          
-          x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
+          x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue + "\n" +
+
+         "Company: " + x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue + "\n" +
         
-          x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
+          "Email: " + x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue + '\n' +
          
-          x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
+          "Phone: " + x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue + "\n" +
          
           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
           "</div>";
