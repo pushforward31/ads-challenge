@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <!-- <meta charset="UTF-8"> -->
+  <!-- <script src="http://code.angularjs.org/1.2.0-rc.2/angular.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+
+<body>
+  
+  <h1>The XMLHttpRequest Object</h1>
+
+  <input id="fileChooser" type="file">
+  
+
+</body> 
+<script type="text/xml" src="cdCatalog"></script>
+<script type="text/javascript">
+  
+  var fileChooser = document.getElementById('fileChooser');
+
+  function parseTextAsXml(text) {
+    var parser = new DOMParser(),
+      xmlDom = parser.parseFromString(text, "text/xml");
+
+    
+    
+  }
+
+  function waitForTextReadComplete(reader) {
+    reader.onloadend = function (event) {
+      var text = event.target.result;
+
+      parseTextAsXml(text);
+      // console.log(text);
+    }
+  }
+
+  function handleFileSelection() {
+    var file = fileChooser.files[0],
+      reader = new FileReader();
+
+    waitForTextReadComplete(reader);
+    reader.readAsText(file);
+    console.log(reader + file);
+  }
+
+  fileChooser.addEventListener('change', handleFileSelection, false);
+</script>
+
+</html>
