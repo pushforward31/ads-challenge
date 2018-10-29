@@ -3,7 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
  
 
@@ -11,30 +14,95 @@
 
 
 <body>
-<div ng-app="myApp"></div>
+<!-- <div ng-app="myApp"></div>
 <div ng-controller="myCtrl">
   <pre class="prettyprint lang-xml"></pre>
   
   </div>
-</div>
-  <!-- <h1>The XMLHttpRequest Object</h1>
+</div> -->
+  <h1>The XMLHttpRequest Object</h1>
 
-<input id="fileChooser" type="file">
+<input id="fileChooser" type="file" name = "Choose adsInfo.xml for Table">
   <table id="demo1" border="1">
-    <tr>
-      <th>City</th>
-      <th>Address</th>
-    </tr>
-  </table> -->
+  </table>
 
+  <div class="container">
+    <h2>Cards Columns</h2>
+    <div class="card-columns">
+      <div id = "card">
 
- 
+      </div>
+    </div>
+    </div>
+
+<button id = "table"> Table</button>
+<button id = "cards"> Cards</button>
 
 </body>
 
 <script type="text/javascript">
   
   var fileChooser = document.getElementById('fileChooser');
+  
+//   function parseTextAsXml1(text) {
+//     var parser = new DOMParser(),
+//       xmlDom = parser.parseFromString(text, "text/xml");
+
+//     //now, extract items from xmlDom and assign to appropriate text input fields
+   
+//       var x, i, xmlDoc, table;
+//       // xmlDoc = text.responseXML;
+//       console.log("xmlDoc " + xmlDom);
+//       table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
+//       x = xmlDom.getElementsByTagName("Contact")
+//       for (i = 0; i < x.length; i++) {
+//         table += "<tr><td>" +
+//           x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
+//           "</td><td>" + 
+//           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
+//           "</td></tr>";
+//       }
+//       document.getElementById("demo1").innerHTML = table;
+    
+    
+//   }
+
+//   function waitForTextReadComplete1(reader) {
+//     reader.onloadend = function (event) {
+//       var text = event.target.result;
+
+//       parseTextAsXml1(text);
+//       // console.log(text);
+//     }
+ 
+// }
+
+//   function handleFileSelection1() {
+//     $("#table").click(function(){
+//     var file = fileChooser.files[0],
+//       reader = new FileReader();
+
+//     waitForTextReadComplete1(reader);
+//     reader.readAsText(file);
+//     console.log(reader + file);
+//   });
+//   }
+
+//   fileChooser.addEventListener('change', handleFileSelection1, false);
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------
+
 
   function parseTextAsXml(text) {
     var parser = new DOMParser(),
@@ -42,27 +110,27 @@
 
     //now, extract items from xmlDom and assign to appropriate text input fields
    
-      var x, i, xmlDoc, table;
+      var x, i, xmlDoc, card;
       // xmlDoc = text.responseXML;
       console.log("xmlDoc " + xmlDom);
-      table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
+      card = "<div></div>";
       x = xmlDom.getElementsByTagName("Contact")
       for (i = 0; i < x.length; i++) {
-        table += "<tr><td>" +
+        card += "<div class = 'group'>" +
           x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
-          "</td><td>" +
+          
           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
-          "</td><td>" +
+          
           x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
-          "</td><td>" +
+        
           x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
-          "</td><td>" +
+         
           x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
-          "</td><td>" + 
+         
           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
-          "</td></tr>";
+          "</div>";
       }
-      document.getElementById("demo1").innerHTML = table;
+      document.getElementById("card").innerHTML = card;
     
     
   }
@@ -74,18 +142,22 @@
       parseTextAsXml(text);
       // console.log(text);
     }
-  }
+ 
+}
 
   function handleFileSelection() {
+    $("#cards").click(function(){
     var file = fileChooser.files[0],
       reader = new FileReader();
 
     waitForTextReadComplete(reader);
     reader.readAsText(file);
     console.log(reader + file);
+  });
   }
 
-  fileChooser.addEventListener('change', handleFileSelection, false);
+
+ fileChooser.addEventListener('change', handleFileSelection, false);
 
 
 //------------------------------------------------------------------------------------------------------------------
