@@ -1,5 +1,7 @@
 .group{
-border: solid 1px black;
-padding: 8px;
+    border: solid 1px black;
+    padding-right: 8px;
+    margin-bottom: 8px;
+    width: 172px;
 
 }

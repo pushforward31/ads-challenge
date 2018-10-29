@@ -27,7 +27,7 @@
   </table>
 
   <div class="container">
-    <h2>Cards Columns</h2>
+    <h2>Cards </h2>
     <div class="card-columns">
       <div id = "card">
 
@@ -117,13 +117,16 @@
       x = xmlDom.getElementsByTagName("Contact")
       for (i = 0; i < x.length; i++) {
         card += "<div class = 'group'>"  +
+
+          x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue + "\n  \n" +
+
           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue + "\n" +
           
-          x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue + "\n" +
+          
 
-         "Company: " + x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue + "\n" +
+         "Company: " + x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue + "\n " +
         
-          "Email: " + x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue + '\n' +
+           x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue + '\n' +
          
           "Phone: " + x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue + "\n" +
          
