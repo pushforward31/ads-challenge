@@ -2,17 +2,22 @@
 <html lang="en-us">
 
 <head>
-  <!-- <meta charset="UTF-8"> -->
-  <!-- <script src="http://code.angularjs.org/1.2.0-rc.2/angular.js"></script> -->
-
+  <meta charset="UTF-8">
+  
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+ 
+
 </head>
 
 
 <body>
-  <div  ng-controller="myCtrl"></div>
-  <pre class ="prettyprint lang-xml" ></pre>
-  <h1>The XMLHttpRequest Object</h1>
+<div ng-app="myApp"></div>
+<div ng-controller="myCtrl">
+  <pre class="prettyprint lang-xml"></pre>
+  
+  </div>
+</div>
+  <!-- <h1>The XMLHttpRequest Object</h1>
 
 <input id="fileChooser" type="file">
   <table id="demo1" border="1">
@@ -20,77 +25,18 @@
       <th>City</th>
       <th>Address</th>
     </tr>
-  </table>
+  </table> -->
 
 
-  <div ng-controller="AppController">
-
-    <div class="resultWrapper">
-
-    </div>
-  </div>
+ 
 
 </body>
-<script type="text/xml" src="cdCatalog"></script>
+
 <script type="text/javascript">
   
   var fileChooser = document.getElementById('fileChooser');
 
-  // function parseTextAsXml(text) {
-  //   var parser = new DOMParser(),
-  //     xmlDom = parser.parseFromString(text, "text/xml");
-
-  //   //now, extract items from xmlDom and assign to appropriate text input fields
-   
-  //     var x, i, xmlDoc, table;
-  //     // xmlDoc = text.responseXML;
-  //     console.log("xmlDoc " + xmlDom);
-  //     table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
-  //     x = xmlDom.getElementsByTagName("Contact")
-  //     for (i = 0; i < x.length; i++) {
-  //       table += "<tr><td>" +
-  //         x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
-  //         "</td><td>" +
-  //         x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
-  //         "</td><td>" +
-  //         x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
-  //         "</td><td>" +
-  //         x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
-  //         "</td><td>" +
-  //         x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
-  //         "</td><td>" + 
-  //         x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
-  //         "</td></tr>";
-  //     }
-  //     document.getElementById("demo1").innerHTML = table;
-    
-    
-  // }
-
-  // function waitForTextReadComplete(reader) {
-  //   reader.onloadend = function (event) {
-  //     var text = event.target.result;
-
-  //     parseTextAsXml(text);
-  //     // console.log(text);
-  //   }
-  // }
-
-  // function handleFileSelection() {
-  //   var file = fileChooser.files[0],
-  //     reader = new FileReader();
-
-  //   waitForTextReadComplete(reader);
-  //   reader.readAsText(file);
-  //   console.log(reader + file);
-  // }
-
-  // fileChooser.addEventListener('change', handleFileSelection, false);
-
-
-//------------------------------------------------------------------------------------------------------------------
-
-function parseTextAsXml(text) {
+  function parseTextAsXml(text) {
     var parser = new DOMParser(),
       xmlDom = parser.parseFromString(text, "text/xml");
 
@@ -99,23 +45,10 @@ function parseTextAsXml(text) {
       var x, i, xmlDoc, table;
       // xmlDoc = text.responseXML;
       console.log("xmlDoc " + xmlDom);
-
-// var app = angular.module('myApp', []);
-
-// app.controller('myCtrl', function($scope) {
-//     $scope.contact = xmlDom.getElementsByTagName("Contact");
-//});
-app.directive('prettyprint', function() {
-  return {
-    restrict: 'C',
-    link: function postLink(scope, element, attrs) {
-        var xmlDoc = scope.dom;
-        var table="<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
-        var x = xmlDoc.getElementsByTagName("Contact");
-
-        //here you will get form the xml node all the data that will build each row and append it to the table
-        for (var i = 0; i <x.length; i++) {
-          table += "<tr><td>" +
+      table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
+      x = xmlDom.getElementsByTagName("Contact")
+      for (i = 0; i < x.length; i++) {
+        table += "<tr><td>" +
           x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
           "</td><td>" +
           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
@@ -128,34 +61,8 @@ app.directive('prettyprint', function() {
           "</td><td>" + 
           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
           "</td></tr>";
-        }
-
-        //return the table 
-        element.text(table);
-    }
-  };
-});
-
-
-
-      // table = "<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
-      // x = xmlDom.getElementsByTagName("Contact")
-      // for (i = 0; i < x.length; i++) {
-      //   table += "<tr><td>" +
-      //     x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
-      //     "</td><td>" +
-      //     x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
-      //     "</td><td>" +
-      //     x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
-      //     "</td><td>" +
-      //     x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
-      //     "</td><td>" +
-      //     x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
-      //     "</td><td>" + 
-      //     x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
-      //     "</td></tr>";
-      // }
-      // document.getElementById("demo1").innerHTML = table;
+      }
+      document.getElementById("demo1").innerHTML = table;
     
     
   }
@@ -179,6 +86,93 @@ app.directive('prettyprint', function() {
   }
 
   fileChooser.addEventListener('change', handleFileSelection, false);
+
+
+//------------------------------------------------------------------------------------------------------------------
+//Trying to incorporate Angular
+// function parseTextAsXml(text) {
+//     var parser = new DOMParser(),
+//       xmlDom = parser.parseFromString(text, "text/xml");
+
+    
+   
+//       var x, i, xmlDoc, table;
+//       // xmlDoc = text.responseXML;
+//       console.log("xmlDoc " + xmlDom);
+
+// var app = angular.module('myApp', []);
+// // app.controller('myCtrl', function($scope) {
+// //     $scope.contact = xmlDom.getElementsByTagName("Contact");
+// //});
+
+// // var todoApp = angular.module('todosApp',[]);
+// app.controller('myCtrl', function($scope, xmlDom){
+          
+//           $scope.todos = [];
+//           loadTodos();
+          
+//           function loadTodos(){
+//             var x2js = new X2JS();
+//             xmlDom.getTodos().success(function(data){
+//                 courses  = x2js.xml_str2json(data);
+//                 console.log(courses.Contact.City);
+//                 $scope.todos =courses.Contact.City;
+//             });
+//             }
+//         });
+
+// app.directive('prettyprint', function() {
+//   return {
+//     restrict: 'C',
+//     link: function postLink(scope, element, attrs) {
+//         var xmlDoc = scope.dom;
+//         var table="<tr><th>Company Name</th><th>Contact Name</th><th>Title</th><th>Email</th><th>Phone</th><th>City</th></tr>";
+//         var x = xmlDoc.getElementsByTagName("Contact");
+
+//         //here you will get form the xml node all the data that will build each row and append it to the table
+//         for (var i = 0; i <x.length; i++) {
+//           table += "<tr><td>" +
+//           x[i].getElementsByTagName("CompanyName")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("ContactName")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("ContactTitle")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("Email")[0].childNodes[0].nodeValue +
+//           "</td><td>" +
+//           x[i].getElementsByTagName("Phone")[0].childNodes[0].nodeValue +
+//           "</td><td>" + 
+//           x[i].getElementsByTagName("City")[0].childNodes[0].nodeValue +
+//           "</td></tr>";
+//         }
+
+//         //return the table 
+//         element.text(table);
+//     }
+//   };
+// });
+    
+//   }
+
+//   function waitForTextReadComplete(reader) {
+//     reader.onloadend = function (event) {
+//       var text = event.target.result;
+
+//       parseTextAsXml(text);
+//       // console.log(text);
+//     }
+//   }
+
+//   function handleFileSelection() {
+//     var file = fileChooser.files[0],
+//       reader = new FileReader();
+
+//     waitForTextReadComplete(reader);
+//     reader.readAsText(file);
+//     console.log(reader + file);
+//   }
+
+//   fileChooser.addEventListener('change', handleFileSelection, false);
 
 </script>
 
